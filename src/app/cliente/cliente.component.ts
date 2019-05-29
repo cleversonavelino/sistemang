@@ -50,11 +50,12 @@ export class ClienteComponent implements OnInit {
     }
 
     getAll() : Observable<any[]> {
-        return this.db.list('cliente')
+        return this.db.list('clientes')
           .snapshotChanges()
           .pipe(
             map(changes => {
-              return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+              return changes.map(c => (
+                  { key: c.payload.key, ...c.payload.val() }));
             })
           );
       }
