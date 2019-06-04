@@ -41,6 +41,11 @@ export class ClienteComponent implements OnInit {
             });            
     }
 
+    excluir(key:string) {
+        
+        alert(key);
+    }
+
     listar() {        
         this.getAll().subscribe(
             clientes => this.clientes = clientes,
