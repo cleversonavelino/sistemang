@@ -3,7 +3,7 @@
 <form>
     <div class="form-group">
         <label for="id">Id</label>
-        <input type="number" class="form-control" id="key" name="key"
+        <input type="text" class="form-control" id="key" name="key"
                 placeholder="Digite o ID"
                 [(ngModel)]="cliente.key"
                 readonly>
@@ -29,6 +29,7 @@
             <th>Nome</th>    
             <th>Data de Nascimento</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -36,6 +37,8 @@
             <td>{{ cliente.key }}</td>
             <td>{{ cliente.nome }}</td>
             <td>{{ cliente.dataNascimento }}</td>
+            <td><button class="btn btn-primary"
+                (click)="carregar(cliente)">Alterar</button></td>
             <td><button class="btn btn-primary"
                 (click)="excluir(cliente.key)">Excluir</button></td>
         </tr>
