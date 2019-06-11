@@ -57,7 +57,7 @@ export class ClienteComponent implements OnInit {
         if (confirm('Deseja realmente excluir?')) {
             this.db.list('clientes').remove(key)
                 .then((result: any) => {
-                    console.log(result.key);
+                    console.log(key);
                 });  
         }
     }

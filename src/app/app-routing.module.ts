@@ -9,13 +9,14 @@ const routes: Routes = [
   // App routes goes here here
   { 
     path: 'sistema',    
-    //canActivate: [AuthGuard], 
+    canActivate: [AuthGuard], 
     children: [
-      
+      { path: 'cliente', component: ClienteComponent},
     ]
   },  
-  { path: 'cliente', component: ClienteComponent},
+  
   { path: '', component: LoginComponent},
+  { path: 'login', component: LoginComponent},
 ];
 
 @NgModule({
