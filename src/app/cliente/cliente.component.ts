@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'
 
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 import { Observable } from 'rxjs';
 
@@ -13,7 +14,8 @@ import { map } from 'rxjs/operators';
 @Component({
     selector: 'cliente',
     templateUrl: './cliente.component.html',
-    styleUrls: ['./cliente.component.css']
+    styleUrls: ['./cliente.component.css'],
+    providers: [AngularFireStorage]
 })
 
 @NgModule({
@@ -26,16 +28,27 @@ export class ClienteComponent implements OnInit {
     cliente: Cliente;
     clientesRef: AngularFireList<any>;
     clientes: any[];
+    url:string;
 
-    constructor(private db: AngularFireDatabase) { }
+    selectedFiles: FileList;
+
+    constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) { }
 
     ngOnInit(): void {
         this.cliente = new Cliente();
         this.listar();
     }
 
+    detectFiles(event) {
+        this.selectedFiles = event.target.files;        
+    }
+
     salvar() {
         if (this.cliente.key == null) {
+            this.storage.upload(this.selectedFiles[0].name,this.selectedFiles[0]);
+
+            this.cliente.foto = this.selectedFiles[0].name;
+
             this.db.list('clientes').push(this.cliente)
                 .then((result: any) => {
                     console.log(result.key);
@@ -50,7 +63,11 @@ export class ClienteComponent implements OnInit {
 
     carregar(cliente:Cliente) {
         this.cliente = new Cliente(cliente.key,
-            cliente.nome, cliente.dataNascimento);
+            cliente.nome, cliente.dataNascimento, cliente.foto);
+
+        var url = this.storage.ref(cliente.foto).getDownloadURL().subscribe(url => {
+            this.url = url;
+         });
     }
 
     excluir(key:string) {

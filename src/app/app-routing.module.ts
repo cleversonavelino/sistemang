@@ -3,19 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { ClienteComponent } from './cliente/cliente.component'
 import { LoginComponent } from './login/login.component';
 import { AuthGuard} from './guards/auth.guard'
+import { ProdutoComponent } from './produto/produto.component';
 
-const routes: Routes = [
+const routes: Routes = [ 
 
-  // App routes goes here here
   { 
     path: 'sistema',    
     canActivate: [AuthGuard], 
     children: [
       { path: 'cliente', component: ClienteComponent},
+      { path: 'produto', component: ProdutoComponent},
     ]
-  },  
+  }, 
   
-  { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent},
 ];
 

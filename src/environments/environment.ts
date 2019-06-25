@@ -9,7 +9,7 @@ export const environment = {
     authDomain: "",
     databaseURL: "positivo-fe0a0.firebaseio.com",
     projectId: "positivo-fe0a0",
-    storageBucket: "",
+    storageBucket: "positivo-fe0a0.appspot.com",
     messagingSenderId: ""
   }
   

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers } from '@angular/http';
 import { Router } from "@angular/router";
 
 import { Observable } from 'rxjs';
@@ -23,7 +22,7 @@ export class LoginService {
 
             this.afAuth.auth.signInWithEmailAndPassword(mail, password).then((user) => {
 
-                localStorage['token'] = user.credential;
+                localStorage['user'] = mail;
                 this.router.navigate(['']);
                 console.log(user);
 

@@ -1,8 +1,6 @@
-import { NgModule } from '@angular/core';
 import { OnInit, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'
-
+import { NgModule } from '@angular/core';
 import { LoginService } from './login.service';
 
 @Component({
@@ -13,14 +11,13 @@ import { LoginService } from './login.service';
 })
 
 @NgModule({
-    imports: [FormsModule, CommonModule],
+    imports: [FormsModule],
     declarations: [LoginComponent]
 })
 
 export class LoginComponent implements OnInit {
-
-    email: string;
-    senha: string;
+    email:string;
+    senha:string;
 
     constructor(private loginService: LoginService) {
     }

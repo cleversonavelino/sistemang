@@ -5,20 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ClienteComponent } from './cliente/cliente.component';
-import { LoginComponent } from './login/login.component';
 
 import { AngularFireAuth  } from '@angular/fire/auth';
-
-import { AuthGuard } from "./guards/auth.guard";
-
-import { LoginService } from "./login/login.service"
 
 import { environment } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 import { FormsModule } from '@angular/forms';
+
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
+import { ProdutoComponent } from './produto/produto.component';
+
+import { AuthGuard } from "./guards/auth.guard";
 
 @NgModule({
   declarations: [
@@ -31,9 +33,10 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     ClienteComponent,
-    LoginComponent    
+    LoginComponent ,   
+    ProdutoComponent  
   ],
-  providers: [AuthGuard, LoginService, AngularFireModule, AngularFireAuth],
+  providers: [AuthGuard, AngularFireModule, AngularFireAuth, AngularFireStorage, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
